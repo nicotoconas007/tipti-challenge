@@ -1,13 +1,19 @@
 <template>
   <div id="app">
-
+    <CardHotel />
+    <InputDate />
   </div>
 </template>
 
 <script>
-
+import CardHotel from './components/CardHotel.vue';
+import InputDate from './components/InputDate.vue';
 export default {
   name: 'App',
+  components: {
+    CardHotel,
+    InputDate
+  }
 }
 </script>
 
