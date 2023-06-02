@@ -1,23 +1,34 @@
 <template>
   <div id="app">
-    <SelectUserType />
+    <SelectUserType @userType="receiveUser" />
     <CardHotel />
     <InputDate />
   </div>
 </template>
 
 <script>
-import CardHotel from './components/CardHotel.vue';
-import InputDate from './components/InputDate.vue';
-import SelectUserType from './components/SelectUserType.vue';
+import CardHotel from "./components/CardHotel.vue";
+import InputDate from "./components/InputDate.vue";
+import SelectUserType from "./components/SelectUserType.vue";
 export default {
-  name: 'App',
+  name: "App",
   components: {
     CardHotel,
     InputDate,
-    SelectUserType
-  }
-}
+    SelectUserType,
+  },
+  data() {
+    return {
+      userType: ""
+    };
+  },
+
+  methods: {
+    receiveUser(userType) {
+      this.userType = userType
+    }
+  },
+};
 </script>
 
 <style>

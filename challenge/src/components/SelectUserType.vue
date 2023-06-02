@@ -1,7 +1,7 @@
 <template>
   <div class="container">
     <div>
-      <select v-model="userType">
+      <select v-model="userType" @change="emitTypeUser">
         <option value="" v-if="userType == ''" selected disabled>
           Seleccione tipo de usuario
         </option>
@@ -19,6 +19,11 @@ export default {
     return {
       userType: "",
     };
+  },
+  methods: {
+    emitTypeUser() {
+        this.$emit('userType', this.userType);
+    }
   },
 };
 </script>
