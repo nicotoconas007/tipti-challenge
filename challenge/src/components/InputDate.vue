@@ -3,3 +3,9 @@
         ComponentInputDate
     </div>
 </template>
+
+<script>
+export default {
+    name: 'InputDates'
+}
+</script>

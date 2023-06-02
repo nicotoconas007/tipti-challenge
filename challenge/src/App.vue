@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <SelectUserType />
     <CardHotel />
     <InputDate />
   </div>
@@ -8,11 +9,13 @@
 <script>
 import CardHotel from './components/CardHotel.vue';
 import InputDate from './components/InputDate.vue';
+import SelectUserType from './components/SelectUserType.vue';
 export default {
   name: 'App',
   components: {
     CardHotel,
-    InputDate
+    InputDate,
+    SelectUserType
   }
 }
 </script>
