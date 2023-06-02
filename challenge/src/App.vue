@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <SelectUserType @userType="receiveUser" />
-    <CardHotel />
+    <CardHotel @hotels="receiveHotels"/>
     <InputDate />
   </div>
 </template>
@@ -19,14 +19,18 @@ export default {
   },
   data() {
     return {
-      userType: ""
+      userType: "",
+      hotels: []
     };
   },
 
   methods: {
     receiveUser(userType) {
       this.userType = userType
-    }
+    },
+    receiveHotels(hotels) {
+      this.hotels = hotels
+    },
   },
 };
 </script>
