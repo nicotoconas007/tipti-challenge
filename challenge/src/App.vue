@@ -2,8 +2,12 @@
   <div id="app">
     <SelectUserType @userType="receiveUser" />
     <InputDate @dates="receiveDates" />
-    <CardHotel @hotels="receiveHotels" :userType="userType" :bestOption="bestOption" />
-    <button @click="calculateValue">Calcular</button>
+    <CardHotel
+      @hotels="receiveHotels"
+      :userType="userType"
+      :bestOption="bestOption"
+    />
+    <button @click="calculateValue" :disabled="isInputDisabled">Calcular</button>
   </div>
 </template>
 
@@ -24,7 +28,7 @@ export default {
       hotels: [],
       dates: [],
       error: false,
-      bestOption: ''
+      bestOption: "",
     };
   },
 
@@ -62,6 +66,11 @@ export default {
           this.bestOption = hotelSelected;
         }
       });
+    },
+  },
+  computed: {
+    isInputDisabled() {
+      return !this.userType || this.dates.length < 1 || this.error;
     },
   },
 };

@@ -48,6 +48,7 @@ export default {
     dates: {
       handler(newDates) {
         this.isWeekend(newDates);
+        this.isEqual(newDates);
         this.$emit("dates", { selectedDates: newDates, error: this.error });
       },
       deep: true,
