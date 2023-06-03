@@ -6,6 +6,9 @@
     <button @click="addDate" :disabled="this.dates[0].date == ''">
       Agregar Fecha
     </button>
+    <button @click="removeDate" :disabled="this.dates.length < 2">
+      Eliminar fecha
+    </button>
   </div>
 </template>
 
@@ -27,6 +30,9 @@ export default {
         date: nextDate.toISOString().substring(0, 10),
         isWeekend: false,
       });
+    },
+    removeDate() {
+      this.dates.pop();
     },
     isWeekend(dates) {
       dates.forEach((date) => {
