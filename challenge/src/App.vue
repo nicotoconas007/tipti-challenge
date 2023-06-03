@@ -56,6 +56,7 @@ export default {
     },
     calculateValue() {
       let minPrice = Number.MAX_VALUE;
+      let totalStars = 0;
       this.hotels.forEach((hotel) => {
         let totalPrice = 0;
         this.dates.forEach((date) => {
@@ -69,7 +70,8 @@ export default {
               : hotel.rewardPrice;
           }
         });
-        if (totalPrice < minPrice) {
+        hotel.stars > totalStars ? (totalStars = hotel.stars) : "";
+        if (totalPrice < minPrice || (totalPrice === minPrice && hotel.stars === totalStars)) {
           minPrice = totalPrice;
           const hotelSelected = { ...hotel };
           hotelSelected.total = minPrice;
@@ -82,6 +84,19 @@ export default {
   computed: {
     isInputDisabled() {
       return !this.userType || this.dates.length < 1 || this.error;
+    },
+  },
+  watch: {
+    dates: {
+      handler() {
+        this.bestOption ? this.calculateValue() : "";
+      },
+      deep: true,
+    },
+    userType: {
+      handler() {
+        this.bestOption ? this.calculateValue() : "";
+      },
     },
   },
 };
