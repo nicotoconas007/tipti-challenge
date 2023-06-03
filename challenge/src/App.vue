@@ -6,8 +6,16 @@
       @hotels="receiveHotels"
       :userType="userType"
       :bestOption="bestOption"
+      :error="error"
     />
-    <button @click="calculateValue" :disabled="isInputDisabled">Calcular</button>
+    <button
+      @click="calculateValue"
+      v-show="bestOption == ''"
+      :disabled="isInputDisabled"
+    >
+      Calcular
+    </button>
+    <button @click="viewAll" v-show="bestOption != ''">Ver todos</button>
   </div>
 </template>
 
@@ -42,6 +50,9 @@ export default {
     receiveDates(dates) {
       this.dates = dates.selectedDates;
       this.error = dates.error;
+    },
+    viewAll() {
+      this.bestOption = "";
     },
     calculateValue() {
       let minPrice = Number.MAX_VALUE;

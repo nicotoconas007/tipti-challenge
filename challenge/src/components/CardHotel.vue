@@ -3,19 +3,20 @@
     <div v-show="!bestOption" v-for="hotel in hotels" :key="hotel.name">
       {{ hotel.name }}
     </div>
-    <div v-show="bestOption">
+    <div v-show="bestOption && !error">
       <div>{{ bestOption.name }} - {{ bestOption.total }} - {{ userType }}</div>
       <span v-for="(date, index) in bestOption.dates" :key="index">
         {{ date.date }}
       </span>
     </div>
+    <div v-show="error">No se permiten fechas iguales.</div>
   </div>
 </template>
 
 <script>
 export default {
   name: "CardHotel",
-  props: ["bestOption", "userType"],
+  props: ["bestOption", "userType", "error"],
   data() {
     return {
       hotels: [
