@@ -1,8 +1,9 @@
 <template>
   <div id="app">
     <SelectUserType @userType="receiveUser" />
-    <CardHotel @hotels="receiveHotels"/>
-    <InputDate />
+    <InputDate @dates="receiveDates" />
+    <CardHotel @hotels="receiveHotels" :userType="userType" :bestOption="bestOption" />
+    <button @click="calculateValue">Calcular</button>
   </div>
 </template>
 
@@ -20,16 +21,47 @@ export default {
   data() {
     return {
       userType: "",
-      hotels: []
+      hotels: [],
+      dates: [],
+      error: false,
+      bestOption: ''
     };
   },
 
   methods: {
     receiveUser(userType) {
-      this.userType = userType
+      this.userType = userType;
     },
     receiveHotels(hotels) {
-      this.hotels = hotels
+      this.hotels = hotels;
+    },
+    receiveDates(dates) {
+      this.dates = dates.selectedDates;
+      this.error = dates.error;
+    },
+    calculateValue() {
+      let minPrice = Number.MAX_VALUE;
+      this.hotels.forEach((hotel) => {
+        let totalPrice = 0;
+        this.dates.forEach((date) => {
+          if (this.userType === "regular") {
+            totalPrice += date.isWeekend
+              ? hotel.weekendRgPrice
+              : hotel.regularPrice;
+          } else {
+            totalPrice += date.isWeekend
+              ? hotel.weekendRwPrice
+              : hotel.rewardPrice;
+          }
+        });
+        if (totalPrice < minPrice) {
+          minPrice = totalPrice;
+          const hotelSelected = { ...hotel };
+          hotelSelected.total = minPrice;
+          hotelSelected.dates = this.dates;
+          this.bestOption = hotelSelected;
+        }
+      });
     },
   },
 };

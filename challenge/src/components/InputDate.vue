@@ -15,6 +15,7 @@ export default {
   data() {
     return {
       dates: [{ date: "", isWeekend: false }],
+      error: false,
     };
   },
   methods: {
@@ -26,6 +27,30 @@ export default {
         date: nextDate.toISOString().substring(0, 10),
         isWeekend: false,
       });
+    },
+    isWeekend(dates) {
+      dates.forEach((date) => {
+        const day = new Date(date.date).toLocaleDateString("es-ES", {
+          weekday: "long",
+          timeZone: "UTC",
+        });
+        day === "sábado" || day === "domingo"
+          ? (date.isWeekend = true)
+          : (date.isWeekend = false);
+      });
+    },
+    isEqual(dates) {
+      const dateSet = new Set(dates.map((dateObj) => dateObj.date));
+      this.error = dates.length !== dateSet.size;
+    },
+  },
+  watch: {
+    dates: {
+      handler(newDates) {
+        this.isWeekend(newDates);
+        this.$emit("dates", { selectedDates: newDates, error: this.error });
+      },
+      deep: true,
     },
   },
 };

@@ -1,7 +1,13 @@
 <template>
   <div class="container">
-    <div v-for="hotel in hotels" :key="hotel.name">
+    <div v-show="!bestOption" v-for="hotel in hotels" :key="hotel.name">
       {{ hotel.name }}
+    </div>
+    <div v-show="bestOption">
+      <div>{{ bestOption.name }} - {{ bestOption.total }} - {{ userType }}</div>
+      <span v-for="(date, index) in bestOption.dates" :key="index">
+        {{ date.date }}
+      </span>
     </div>
   </div>
 </template>
@@ -9,6 +15,7 @@
 <script>
 export default {
   name: "CardHotel",
+  props: ["bestOption", "userType"],
   data() {
     return {
       hotels: [
