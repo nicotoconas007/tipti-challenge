@@ -1,14 +1,21 @@
 <template>
   <div class="container">
-    <div v-for="(date, index) in dates" :key="index">
-      <input type="date" v-model="date.date" />
+    <div class="mb-15 org-color">
+      Seleccione fecha/s
     </div>
-    <button @click="addDate" :disabled="this.dates[0].date == ''">
-      Agregar Fecha
-    </button>
-    <button @click="removeDate" :disabled="this.dates.length < 2">
-      Eliminar fecha
-    </button>
+    <div class="container-input mb-15">
+      <div v-for="(date, index) in dates" :key="index">
+      <input class="border-general" type="date" v-model="date.date" />
+      </div>
+    </div>
+    <div class="container-buttons">
+      <button @click="addDate" :class="buttonClasses" :disabled="this.dates[0].date == ''">
+        Agregar Fecha
+      </button>
+      <button @click="removeDate" :class="buttonClasses" v-show="this.dates.length > 1">
+        Eliminar fecha
+      </button>
+    </div>
   </div>
 </template>
 
@@ -50,6 +57,14 @@ export default {
       this.error = dates.length !== dateSet.size;
     },
   },
+  computed: {
+    buttonClasses() {
+      return {
+        'org-color': this.dates[0].date != '',
+        'border-general': this.dates[0].date != '',
+      };
+    }
+  },
   watch: {
     dates: {
       handler(newDates) {
@@ -62,3 +77,32 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+  .container .container-input {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+  .container .container-input input {
+    width: 200px;
+    height: 30px;
+    text-align: center;
+  }
+  .container .container-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+  .container .container-buttons button {
+    width: 200px;
+    height: 30px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+  }
+  .container .container-buttons button:hover:not(:disabled) {
+    color: #fff !important;
+    background-color: #af5700;
+  }
+
+</style>

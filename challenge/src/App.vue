@@ -2,20 +2,23 @@
   <div id="app">
     <SelectUserType @userType="receiveUser" />
     <InputDate @dates="receiveDates" />
+    <button
+      @click="calculateValue"
+      v-show="bestOption == ''"
+      :disabled="isInputDisabled"
+      :class="{'primary-button' : !isInputDisabled}"
+    >
+      Calcular
+    </button>
+    <button @click="viewAll" v-show="bestOption != ''" class="primary-button">
+      Ver todos
+    </button>
     <CardHotel
       @hotels="receiveHotels"
       :userType="userType"
       :bestOption="bestOption"
       :error="error"
     />
-    <button
-      @click="calculateValue"
-      v-show="bestOption == ''"
-      :disabled="isInputDisabled"
-    >
-      Calcular
-    </button>
-    <button @click="viewAll" v-show="bestOption != ''">Ver todos</button>
   </div>
 </template>
 
@@ -103,12 +106,49 @@ export default {
 </script>
 
 <style>
+html {
+  background-color: #ebebeb;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
-  color: #2c3e50;
   margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
 }
+#app button:nth-child(3), #app button:nth-child(4) {
+  width: 500px;
+  height: 40px;
+  margin-top: 15px;
+  border-radius: 20px;
+  border: 0;
+  background-color: #e3e3e3;
+}
+#app .primary-button {
+  background-color: #141435 !important;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  color: #fff;
+}
+#app .primary-button:hover:not(:disabled) { 
+  background-color: #af5700 !important;
+  color: #fff;
+}
+.org-color {
+  color: #df8f18 !important;
+}
+
+.mb-15 {
+  margin-bottom: 15px !important;
+}
+.border-general {
+  border-radius: 5px !important;
+  border: 1px solid #af5700 !important;
+  cursor: pointer !important;
+}
+
 </style>

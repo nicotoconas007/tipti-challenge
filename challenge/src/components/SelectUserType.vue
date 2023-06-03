@@ -1,14 +1,13 @@
 <template>
   <div class="container">
-    <div>
-      <select v-model="userType" @change="emitTypeUser">
+      <div class="mb-15 org-color">Tipo de usuario</div>
+      <select v-model="userType" @change="emitTypeUser" class="border-general">
         <option value="" v-if="userType == ''" selected disabled>
-          Seleccione tipo de usuario
+          Seleccione
         </option>
         <option value="regular">Regular</option>
         <option value="reward">Reward</option>
       </select>
-    </div>
   </div>
 </template>
 
@@ -27,3 +26,19 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+  .container select {
+    width: 300px;
+    height: 30px;
+    border-radius: 4px;
+    background-color: #fff;
+    color: #000;
+    text-align: center;
+  }
+  .container select option {
+    color: #000;
+    background-color: #fff;
+    font-size: 14px;
+  }
+</style>
