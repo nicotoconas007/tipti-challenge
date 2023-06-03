@@ -1,22 +1,29 @@
 <template>
   <div class="container">
-    <div v-show="!bestOption" v-for="hotel in hotels" :key="hotel.name">
-      {{ hotel.name }}
+    <div v-show="error" class="error mb-15">No se permiten fechas iguales.</div>
+    <div class="container-cards">
+      <div v-show="!bestOption" v-for="hotel in hotels" :key="hotel.name">
+        <CardView :hotel="hotel" />
+      </div>
     </div>
     <div v-show="bestOption && !error">
-      <div>{{ bestOption.name }} - {{ bestOption.total }} - {{ userType }}</div>
+      <CardView :bestOption="bestOption" />
+      <!-- <div>{{ bestOption.name }} - {{ bestOption.total }} - {{ userType }}</div>
       <span v-for="(date, index) in bestOption.dates" :key="index">
         {{ date.date }}
-      </span>
+      </span> -->
     </div>
-    <div v-show="error">No se permiten fechas iguales.</div>
   </div>
 </template>
 
 <script>
+import CardView from './CardView.vue';
 export default {
   name: "CardHotel",
   props: ["bestOption", "userType", "error"],
+  components: {
+    CardView
+  },  
   data() {
     return {
       hotels: [
@@ -58,3 +65,20 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+  .container .error {
+    font-size: 16px;
+    background-color: #ffcccc;
+    padding: 11px;
+    border-radius: 5px;
+  }
+  .container .container-cards {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    max-width: 1500px;
+    flex-wrap: wrap;
+    margin-top: 15px;
+  }
+</style>

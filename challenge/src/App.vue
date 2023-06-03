@@ -121,7 +121,8 @@ html {
   gap: 10px;
 }
 #app button:nth-child(3), #app button:nth-child(4) {
-  width: 500px;
+  max-width: 500px;
+  width: 50vw;
   height: 40px;
   margin-top: 15px;
   border-radius: 20px;

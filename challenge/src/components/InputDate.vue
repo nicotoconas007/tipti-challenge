@@ -86,7 +86,8 @@ export default {
     gap: 15px;
   }
   .container .container-input input {
-    width: 200px;
+    width: 50vw;
+    max-width: 200px;
     height: 30px;
     text-align: center;
   }
@@ -96,7 +97,8 @@ export default {
     gap: 15px;
   }
   .container .container-buttons button {
-    width: 200px;
+    width: 40vw;
+    max-width: 200px;
     height: 30px;
     transition: background-color 0.3s ease, color 0.3s ease;
   }

@@ -29,7 +29,8 @@ export default {
 
 <style scoped>
   .container select {
-    width: 300px;
+    max-width: 300px;
+    width: 50vw;
     height: 30px;
     border-radius: 4px;
     background-color: #fff;
