@@ -1,7 +1,8 @@
 <template>
   <div>
     <div class="card-container">
-      <div class="card-name mb-15">Hotel {{ hotel ? hotel.name : bestOption.name }}</div>
+      <div class="card-name">Hotel {{ hotel ? hotel.name : bestOption.name }}</div>
+      <div v-if="userType" class="mb-15">Tipo de usuario : {{ userType }}</div>
       <div v-if="hotel" class="card-stars mb-15">
         <hr>
         <svg v-for="stars in hotel.stars" :key="stars" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 576 512" fill="yellow">
@@ -16,7 +17,7 @@
           <span v-else>Fecha seleccionada: </span>
         </div>
         <span class="dates" v-for="(date, index) in bestOption.dates" :key="index">
-          {{ date.date }}
+          {{ date.date.replace(/(\d{4})-(\d{2})-(\d{2})/, '$3/$2/$1') }}
         </span>
       </div>
       <div v-if="hotel" class="card-prices">
@@ -36,7 +37,7 @@
 <script>
 export default {
   name: "CardView",
-  props: ["hotel", "bestOption"],
+  props: ["hotel", "bestOption", "userType"],
 };
 </script>
 
@@ -58,6 +59,7 @@ export default {
 .card-container .card-name {
   font-size: 24px;
   font-weight: bold;
+  margin-bottom: 8px;
 }
 .card-container .selected-dates {
   font-weight: bold;

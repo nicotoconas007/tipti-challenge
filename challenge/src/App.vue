@@ -8,7 +8,7 @@
       :disabled="isInputDisabled"
       :class="{'primary-button' : !isInputDisabled}"
     >
-      Calcular
+      Ver mejor opcion
     </button>
     <button @click="viewAll" v-show="bestOption != ''" class="primary-button">
       Ver todos
@@ -107,7 +107,10 @@ export default {
 
 <style>
 html {
-  background-color: #ebebeb;
+  background: url("./assets/img/background.png");
+  background-size: cover;
+  background-color: #000;
+  background-repeat: no-repeat;
 }
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -137,12 +140,10 @@ html {
 }
 #app .primary-button:hover:not(:disabled) { 
   background-color: #af5700 !important;
-  color: #fff;
 }
 .org-color {
-  color: #df8f18 !important;
+  color: #af5700 !important;
 }
-
 .mb-15 {
   margin-bottom: 15px !important;
 }
@@ -150,6 +151,12 @@ html {
   border-radius: 5px !important;
   border: 1px solid #af5700 !important;
   cursor: pointer !important;
+}
+
+@media screen and (max-width: 768px) {
+  html {
+    background: #FF914D;
+  }
 }
 
 </style>

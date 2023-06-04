@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-      <div class="mb-15 org-color">Seleccione el tipo de usuario</div>
+  <div class="container mb-15">
+      <div class="mb-15">Seleccione el tipo de usuario</div>
       <select v-model="userType" @change="emitTypeUser" class="border-general">
         <option value="" v-if="userType == ''" selected disabled>
           Seleccione
@@ -28,6 +28,9 @@ export default {
 </script>
 
 <style scoped>
+  .container > div {
+    color: #fff;
+  }
   .container select {
     max-width: 300px;
     width: 50vw;

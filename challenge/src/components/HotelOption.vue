@@ -1,13 +1,13 @@
 <template>
   <div class="container">
-    <div v-show="error" class="error mb-15">No se permiten fechas iguales.</div>
+    <div v-show="error" class="error mb-15">No se permiten fechas iguales o vacias.</div>
     <div class="container-cards">
       <div v-show="!bestOption" v-for="hotel in hotels" :key="hotel.name">
         <CardView :hotel="hotel" />
       </div>
     </div>
     <div v-show="bestOption && !error">
-      <CardView :bestOption="bestOption" />
+      <CardView :bestOption="bestOption" :userType="userType" />
     </div>
   </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="mb-15 org-color">
+    <div class="mb-15">
       Seleccione fecha/s
     </div>
     <div class="container-input mb-15">
@@ -9,10 +9,10 @@
       </div>
     </div>
     <div class="container-buttons">
-      <button @click="addDate" :class="buttonClasses" :disabled="this.dates[0].date == ''">
+      <button @click="addDate" :class="buttonClasses" :disabled="this.dates[0].date == '' || error">
         Agregar Fecha
       </button>
-      <button @click="removeDate" :class="buttonClasses" v-show="this.dates.length > 1">
+      <button @click="removeDate" class="org-color border-general" v-show="this.dates.length > 1">
         Eliminar fecha
       </button>
     </div>
@@ -52,16 +52,17 @@ export default {
           : (date.isWeekend = false);
       });
     },
-    isEqual(dates) {
-      const dateSet = new Set(dates.map((dateObj) => dateObj.date));
-      this.error = dates.length !== dateSet.size;
-    },
+    isEqualOrEmpty(dates) {
+      const dateSet = new Set(dates.map(dateObj => dateObj.date));
+      const emptyDate = dates.some(dateObj => dateObj.date === "");
+      this.error = dates.length !== dateSet.size || emptyDate;
+    }
   },
   computed: {
     buttonClasses() {
       return {
-        'org-color': this.dates[0].date != '',
-        'border-general': this.dates[0].date != '',
+        'org-color': this.dates[0].date != "" && !this.error,
+        'border-general': this.dates[0].date != "" && !this.error,
       };
     }
   },
@@ -69,7 +70,7 @@ export default {
     dates: {
       handler(newDates) {
         this.isWeekend(newDates);
-        this.isEqual(newDates);
+        this.isEqualOrEmpty(newDates);
         this.$emit("dates", { selectedDates: newDates, error: this.error });
       },
       deep: true,
@@ -79,6 +80,9 @@ export default {
 </script>
 
 <style scoped>
+  .container > div {
+    color: #fff;
+  }
   .container .container-input {
     display: flex;
     justify-content: center;
