@@ -40,7 +40,7 @@ http://localhost:8080
 Pensé el desafio como una forma de mostrar variedad de técnicas de vue para completarlo. Si bien no es un desafío muy complejo,
 intenté utilizar varias caracteristicas de Vue,js tanto como methods, computed properties, props, events, directivas como v-for,
 v-if, v-show, v-bind, v-model, algo de ciclo de vida con mounted, etc. Pensé usar Vuex o Router pero hubiese complejizado de más
-la solución.
+la solución. Utilicé Vue versión 2 ya que es con la que mas cómodo me siento por el momento.
 La estructura del proyecto se compone del App.vue como componente padre y referente, en él se aplica la lógica principal del desafío,
 filtrar la mejor opción de hotel, pero la información del hotel, las fechas y el tipo de usuario son otorgados a través de eventos de
 sus 3 componentes hijos : InputDate.vue, SelectUserType.vue y HotelOption.Vue, este último con un componente hijo adicional, CardView.Vue,
