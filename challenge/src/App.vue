@@ -109,7 +109,7 @@ export default {
 html {
   background: url("./assets/img/background.png");
   background-size: cover;
-  background-color: #000;
+  background-color: #FF914D;
   background-repeat: no-repeat;
 }
 #app {
