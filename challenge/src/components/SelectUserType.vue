@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-      <div class="mb-15 org-color">Tipo de usuario</div>
+      <div class="mb-15 org-color">Seleccione el tipo de usuario</div>
       <select v-model="userType" @change="emitTypeUser" class="border-general">
         <option value="" v-if="userType == ''" selected disabled>
           Seleccione

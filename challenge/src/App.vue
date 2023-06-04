@@ -13,7 +13,7 @@
     <button @click="viewAll" v-show="bestOption != ''" class="primary-button">
       Ver todos
     </button>
-    <CardHotel
+    <HotelOption
       @hotels="receiveHotels"
       :userType="userType"
       :bestOption="bestOption"
@@ -23,13 +23,13 @@
 </template>
 
 <script>
-import CardHotel from "./components/CardHotel.vue";
+import HotelOption from "./components/HotelOption.vue";
 import InputDate from "./components/InputDate.vue";
 import SelectUserType from "./components/SelectUserType.vue";
 export default {
   name: "App",
   components: {
-    CardHotel,
+    HotelOption,
     InputDate,
     SelectUserType,
   },

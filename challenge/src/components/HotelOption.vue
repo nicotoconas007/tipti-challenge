@@ -8,10 +8,6 @@
     </div>
     <div v-show="bestOption && !error">
       <CardView :bestOption="bestOption" />
-      <!-- <div>{{ bestOption.name }} - {{ bestOption.total }} - {{ userType }}</div>
-      <span v-for="(date, index) in bestOption.dates" :key="index">
-        {{ date.date }}
-      </span> -->
     </div>
   </div>
 </template>
@@ -19,7 +15,7 @@
 <script>
 import CardView from './CardView.vue';
 export default {
-  name: "CardHotel",
+  name: "HotelOption",
   props: ["bestOption", "userType", "error"],
   components: {
     CardView
