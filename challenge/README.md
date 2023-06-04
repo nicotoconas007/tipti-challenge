@@ -7,7 +7,7 @@ Clona el repositorio en tu máquina local
 
 ### Navega hasta la carpeta del proyecto: cd nombre-del-proyecto.
 ```
-cd challenge
+cd tipti-challenge/challenge
 ```
 
 ### Instala las dependencias
